@@ -1,0 +1,29 @@
+{
+  "name": "jsacedemthesis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WayneDex/JSAcedemThesis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WayneDex/JSAcedemThesis/issues"
+  },
+  "homepage": "https://github.com/WayneDex/JSAcedemThesis#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  }
+}
