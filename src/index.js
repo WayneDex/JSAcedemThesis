@@ -7,7 +7,7 @@ import accordCalc from "./modules/accordCalc";
 import btnMore from "./modules/btnMore";
 import popupDiscount from "./modules/popupDiscount";
 import popupCheck from "./modules/popupCheck";
-import popupConsult from "./modules/popupConsultation";
+import popupConsult from "./modules/popupConsult";
 
 popupCall();
 sendForm();
