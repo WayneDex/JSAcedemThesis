@@ -4,9 +4,9 @@ const popupCall = () => {
 
     document.body.addEventListener('click', (event) => {
         let target = event.target;
-        event.preventDefault();
-
+        
         if (target.closest('.call-btn')) {
+            event.preventDefault();
             let popupWindow = document.documentElement.clientWidth;
             
             if (popupWindow >= 750) {
