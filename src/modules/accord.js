@@ -2,7 +2,6 @@ const accord = () => {
     const accordion = document.querySelector('.slideInDown'),
         panelBtn = document.querySelectorAll('.panel-heading'),
         content = document.querySelectorAll('.collapse');
-        console.log(panelBtn);
 
     const accordContent = (index) => {
         content.forEach((item, i) => {
