@@ -1,19 +1,24 @@
 const popup = () => {
-	const callBtn = document.querySelectorAll('.call-btn, .consultation-btn'),
-		popupCall = document.querySelector('.popup-call'),
-		checkBtn = document.querySelector('.check-btn'),
-		popupCheck = document.querySelector('.popup-check'),
-		discountBtn = document.querySelectorAll('.discount-btn'),
-		popupDiscount = document.querySelector('.popup-discount'),
-		popupAll = document.querySelectorAll('.popup');
+	const callBtn = document.querySelectorAll('.call-btn'),
+	popupCall = document.querySelector('.popup-call'),
+	checkBtn = document.querySelector('.check-btn'),
+	popupCheck = document.querySelector('.popup-check'),
+	discountBtn = document.querySelectorAll('.discount-btn'),
+	popupDiscount = document.querySelector('.popup-discount'),
+	consultationBtn = document.querySelector('.consultation-btn'),
+	popupConsultation = document.querySelector('.popup-consultation'),
+	popupAll = document.querySelectorAll('.popup');
 
 	const openPopup = () => {
-		callBtn.forEach((item) => {
-			item.addEventListener('click', (event) => {
-				event.preventDefault();
-				popupCall.style.cssText =
-					`display: block;`;
-			});
+		callBtn[0].addEventListener('click', (event) => {
+			event.preventDefault();
+			popupCall.style.cssText =
+				`display: block;`;
+		});
+		callBtn[3].addEventListener('click', (event) => {
+			event.preventDefault();
+			popupCall.style.cssText =
+				`display: block;`;
 		});
 		checkBtn.addEventListener('click', () => {
 			popupCheck.style.cssText =
@@ -24,6 +29,10 @@ const popup = () => {
 				popupDiscount.style.cssText =
 					`display: block;`;
 			});
+		});
+		consultationBtn.addEventListener('click', () => {
+			popupConsultation.style.cssText =
+				`display: block;`;
 		});
 
 	};
