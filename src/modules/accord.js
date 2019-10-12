@@ -1,30 +1,36 @@
-const accord = () => {
-    const accordion = document.querySelector('.slideInDown'),
-        panelBtn = document.querySelectorAll('.panel-heading'),
-        content = document.querySelectorAll('.collapse');
+const accord = (elem) => {
+  const accordionHeader = document.getElementById(elem),
+    accordion = accordionHeader.querySelectorAll('.panel-heading'),
+    accordionContent = accordionHeader.querySelectorAll('.collapse'),
+    nextBtn = document.querySelectorAll('.next-btn');
 
-    const accordContent = (index) => {
-        content.forEach((item, i) => {
-            if(index === i){
-                item.style.cssText = 'display: block';
-            }else{
-                item.style.cssText = 'display: none';
-            }
-        });
-    };
-    
-    accordion.addEventListener('click', (event) => {
-        let target = event.target;
-        event.preventDefault();
-        target = target.closest('.panel-heading');
-        if(target){
-            panelBtn.forEach((item, i) => {
-                if(item === target){
-                    accordContent(i);
-                }
-            });
+  accordionHeader.addEventListener('click', (event) => {
+    let target = event.target;
+    target = target.closest('.panel-heading');
+
+    if (target) {
+      accordion.forEach((item, i) => {
+        if (item === target) {
+          accordionContent[i].classList.add('in');
+        } else {
+          accordionContent[i].classList.remove('in');
         }
-    });
+      });
+    }
+
+    let newTarget = event.target;
+    newTarget = newTarget.closest('.next-btn');
+
+    if (newTarget) {
+      nextBtn.forEach((item, i) => {
+        if (item === newTarget) {
+          accordionContent[i + 1].classList.add('in');
+          accordionContent[i].classList.remove('in');
+        }
+      });
+    }
+
+  });
 };
 
 export default accord;
