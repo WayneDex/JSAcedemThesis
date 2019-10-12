@@ -7,7 +7,8 @@ const popup = () => {
 	popupDiscount = document.querySelector('.popup-discount'),
 	consultationBtn = document.querySelector('.consultation-btn'),
 	popupConsultation = document.querySelector('.popup-consultation'),
-	popupAll = document.querySelectorAll('.popup');
+	popupAll = document.querySelectorAll('.popup'),
+	calcBtn = document.querySelector('.sell');
 
 	const openPopup = () => {
 		callBtn[0].addEventListener('click', (event) => {
@@ -29,6 +30,10 @@ const popup = () => {
 				popupDiscount.style.cssText =
 					`display: block;`;
 			});
+		});
+		calcBtn.addEventListener('click', (event) => {
+			popupDiscount.style.cssText =
+				`display: block;`;
 		});
 		consultationBtn.addEventListener('click', () => {
 			popupConsultation.style.cssText =

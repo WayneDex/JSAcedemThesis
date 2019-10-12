@@ -1,60 +1,48 @@
-const sendForm = () => {
-
+const sendForm = (element) => {
     const errorMessage = 'Извините, что-то пошло не так',
     loadMessage = 'Идёт отправка, ожидайте',
     succesMessage = 'Отправлено';
-
-    const formArr = document.querySelectorAll('form');
-
-    formArr.forEach((item) => {
-        item.addEventListener('input', (elem) => {
-
-            if (elem.target.classList.contains('phone-user')){
-                elem.target.value = elem.target.value.replace(/[^0-9]/, '');
-            }
-            if (elem.target.getAttribute('name') === 'user_name'){
-                elem.target.value = elem.target.value.replace(/[^А-яЁё]/, '');
-            }
-
-        });
-        const statusMessage = document.createElement('div');
-        statusMessage.style.cssText = 'font-size: 22px';
-
-        item.addEventListener('submit', (event) => {
-            event.preventDefault();
-            item.appendChild(statusMessage);
-            statusMessage.textContent = loadMessage;
-
-            const formData = new FormData(item);
-            let body = {};
-
-            formData.forEach((val, key) => {
-                body[key] = val;
-            });
-            postData(body)
-            .then((response) => {
-                if(response.status !== 200){
-                    throw new Error('Status network not 200');
-                }
-                statusMessage.textContent = succesMessage;
-            })
-            .then(() => event.target.querySelectorAll('input').forEach((item) => {
-                item.value = '';  
-            }))
-            .catch(() => statusMessage.textContent = errorMessage);
-        });
-
-        const postData = (body) => {
-            return fetch('./server.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
-        };
+  
+    const statusMessage = document.createElement('div');
+    statusMessage.style.cssText = `font-size: 22px;`;
+  
+    element.appendChild(statusMessage);
+    
+    setTimeout(() => {
+      statusMessage.textContent = '';
+    }, 5000);
+  
+    statusMessage.textContent = loadMessage;
+    const formData = new FormData(element);
+    
+    formData.forEach((val, key) => {
+      window.globalObj[key] = val;
     });
-
-};
-
-export default sendForm;
+  
+    const postData = (body) => {
+      return fetch('./server.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+    };
+  
+    postData(window.globalObj)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('status network not 200.');
+        }
+        statusMessage.textContent = succesMessage;
+        const formInputs = [...document.querySelectorAll('input')];
+        formInputs.forEach(item => {
+          if (item.value !== '') {
+            item.value = '';
+          }
+        });
+        window.globalObj = {};
+      })
+      .catch(() => statusMessage.textContent = errorMessage);
+  };
+  export default sendForm;
